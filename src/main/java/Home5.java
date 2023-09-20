@@ -1,24 +1,24 @@
 import java.util.*;
 
 public class Home5 {
-    public static void addContacts(String key, String value, HashMap<String,ArrayList<String>> hashMap) {
+    public static void addContacts(String key, String value, HashMap<String,HashSet<String>> hashMap) {
         if(hashMap.containsKey(key)){
             hashMap.get(key).add(value);
         }
         else{
-            ArrayList<String> list = new ArrayList<>();
-            list.add(value);
-            hashMap.put(key,list);
+            HashSet <String> h_set = new HashSet<>();
+            h_set.add(value);
+            hashMap.put(key,h_set);
         }
     }
-    public static void PrintSortContact(HashMap<String, ArrayList<String>> hashMap){
+    public static void PrintSortContact(HashMap<String, HashSet<String>> hashMap){
         ArrayList <Integer> sort = new ArrayList<>();
-        for (ArrayList<String> item: hashMap.values()) {
+        for (HashSet<String> item: hashMap.values()) {
             sort.add(item.size());
         }
         sort.sort(Comparator.reverseOrder());
         for (int i = 0; i < sort.size(); i++) {
-            for (Map.Entry<String, ArrayList<String>> entry : hashMap.entrySet()) {
+            for (HashMap.Entry<String, HashSet<String>> entry : hashMap.entrySet()) {
                 if(sort.get(i) == entry.getValue().size()){
                     System.out.printf("Имя: %s \n Телефоны: %s \n",entry.getKey(),entry.getValue());
                 }
@@ -28,7 +28,7 @@ public class Home5 {
     }
 
     public static void main(String[] args) {
-        HashMap<String,ArrayList<String>> phone_book = new HashMap<>();
+        HashMap<String,HashSet<String>> phone_book = new HashMap<>();
         Scanner in = new Scanner(System.in);
         Boolean proces = true;
         String name = "";
